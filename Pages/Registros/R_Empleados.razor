@@ -181,11 +181,11 @@
     {
         bool guardo;
 
-        if (!Validar())
+        @* if (!Validar())
         {
             mensaje = "Hay errores, por favor corregir.";
             return;
-        }
+        } *@
 
         guardo = empleadosBLL.Guardar(this.empleado);
 
