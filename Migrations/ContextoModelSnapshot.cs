@@ -67,6 +67,46 @@ namespace RecursosHumanos.Migrations
 
                     b.ToTable("Empleados");
                 });
+
+            modelBuilder.Entity("Licencias", b =>
+                {
+                    b.Property<int>("LicenciaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Caracteristica")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiasReposo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaEmicion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LugarEmicion")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombreMedico")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoLicencia")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("LicenciaId");
+
+                    b.ToTable("Licencias");
+                });
 #pragma warning restore 612, 618
         }
     }
