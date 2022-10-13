@@ -145,10 +145,10 @@
     {
         licencia = new Licencias();
     }
-    bool Validar()
+    @* bool Validar()
     {
         return licencia.Caracteristica.Contains(".");
-    }
+    } *@
 
     protected override void OnInitialized()
     {
@@ -166,11 +166,11 @@
     {
         bool guardo;
 
-        if (!Validar())
+        @* if (!Validar())
         {
             mensaje = "Hay errores en caracteristicas, por favor terminar la oracion con un punto.";
             return;
-        }
+        } *@
 
         guardo = licenciasBLL.Guardar(this.licencia);
 

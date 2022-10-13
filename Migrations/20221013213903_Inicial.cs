@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecursosHumanos.Migrations
 {
-    public partial class AgregandoelDbcontextdelaclaseEmpleado : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,12 +32,35 @@ namespace RecursosHumanos.Migrations
                 {
                     table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Licencias",
+                columns: table => new
+                {
+                    LicenciaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaEmision = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaInicio = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DiasReposo = table.Column<string>(type: "TEXT", nullable: false),
+                    TipoLicencia = table.Column<string>(type: "TEXT", nullable: false),
+                    Caracteristica = table.Column<string>(type: "TEXT", nullable: false),
+                    NombreMedico = table.Column<string>(type: "TEXT", nullable: false),
+                    LugarEmision = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Licencias", x => x.LicenciaId);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Empleados");
+
+            migrationBuilder.DropTable(
+                name: "Licencias");
         }
     }
 }

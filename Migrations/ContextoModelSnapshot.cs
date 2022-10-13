@@ -85,13 +85,13 @@ namespace RecursosHumanos.Migrations
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("FechaEmicion")
+                    b.Property<DateTime>("FechaEmision")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LugarEmicion")
+                    b.Property<string>("LugarEmision")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
