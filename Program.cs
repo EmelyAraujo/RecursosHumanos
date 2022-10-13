@@ -14,6 +14,7 @@ options.UseSqlite(ConStr)
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddScoped<LicenciasBLL>();
 builder.Services.AddScoped<EmpleadosBLL>();
 builder.Services.AddScoped<NotificationService>();
 
