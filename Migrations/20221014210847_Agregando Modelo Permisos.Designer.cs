@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecursosHumanos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221014144039_Agregando Ausencias")]
-    partial class AgregandoAusencias
+    [Migration("20221014210847_Agregando Modelo Permisos")]
+    partial class AgregandoModeloPermisos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,9 @@ namespace RecursosHumanos.Migrations
 
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("MotivoAusencia")
                         .IsRequired()
@@ -129,6 +132,30 @@ namespace RecursosHumanos.Migrations
                     b.HasKey("LicenciaId");
 
                     b.ToTable("Licencias");
+                });
+
+            modelBuilder.Entity("Permisos", b =>
+                {
+                    b.Property<int>("PermisoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CantidadDias")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MotivoPermiso")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("PermisoId");
+
+                    b.ToTable("Permisos");
                 });
 #pragma warning restore 612, 618
         }
