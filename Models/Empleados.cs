@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class Empleados
 {
-    [Key]   
+    [Key]
     public int EmpleadoId { get; set; }
 
     [Required(ErrorMessage = "Favor de Ingresar el nombre.")]
@@ -36,7 +36,7 @@ public class Empleados
     public string? Cargo { get; set; }
 
     [Required(ErrorMessage = "Favor de Ingresar El sueldo.")]
-    [Range(25000,20000000 )]
+    [Range(25000, 20000000)]
     public float? Sueldo { get; set; }
 
     [Required(ErrorMessage = "Favor de Ingresar la forma de pago")]

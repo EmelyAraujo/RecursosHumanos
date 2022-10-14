@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecursosHumanos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20221014144039_Agregando Ausencias")]
+    partial class AgregandoAusencias
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
@@ -27,9 +29,6 @@ namespace RecursosHumanos.Migrations
 
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("MotivoAusencia")
                         .IsRequired()
@@ -130,30 +129,6 @@ namespace RecursosHumanos.Migrations
                     b.HasKey("LicenciaId");
 
                     b.ToTable("Licencias");
-                });
-
-            modelBuilder.Entity("Permisos", b =>
-                {
-                    b.Property<int>("PermisoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CantidadDias")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EmpleadoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MotivoPermiso")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("PermisoId");
-
-                    b.ToTable("Permisos");
                 });
 #pragma warning restore 612, 618
         }
