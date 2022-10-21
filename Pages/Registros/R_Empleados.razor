@@ -26,8 +26,8 @@
                                     <div class="input-group-append">
                                         <button type="button" class=" btn btn-primary input-group-text"
                                             @onclick="Buscar"><i class="oi oi-magnifying-glass" /></button>
-                                            
-                                        
+
+
                                     </div>
                                 </div>
                             </div>
@@ -120,6 +120,11 @@
                     @*FormaDePago*@
                     <div class="mb-3">
                         <label>Forma de pago</label>
+                        <InputSelect class="form-select" @bind-Value="empleado.FormaPago">
+                            <option value="0" disabled> Seleccione uno </option>
+                            <option value= "1">Quincenal</option> 
+                            <option value= "2">Mensual</option> 
+                        </InputSelect>
                         <InputText @bind-Value="empleado.FormaPago" class="form-control" />
                         <ValidationMessage For="@(() => empleado.FormaPago)" />
                     </div>
@@ -142,9 +147,10 @@
     </div>
     <div class="card-footer">
         <div class="form-group text-center" display: inline-block>
-            <button type="button" class="btn btn-lg btn-primary"> <i class="oi oi-file" />  Nuevo</button>
+            <button type="button" class="btn btn-lg btn-primary"> <i class="oi oi-file" /> Nuevo</button>
             <button type="submit" class="btn btn-lg btn-success"><i class="oi oi-document" /> Guardar</button>
-            <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar"><i class="oi oi-trash" /> Eliminar</button>
+            <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar"><i class="oi oi-trash" />
+                Eliminar</button>
         </div>
     </div>
 
@@ -182,10 +188,10 @@
         bool guardo;
 
         @* if (!Validar())
-        {
+            {
             mensaje = "Hay errores, por favor corregir.";
             return;
-        } *@
+            } *@
 
         guardo = empleadosBLL.Guardar(this.empleado);
 

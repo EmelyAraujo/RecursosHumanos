@@ -1,10 +1,10 @@
-﻿@page "/empleados"
-@inject EmpleadosBLL empleadosBLL;
+﻿@page "/licencias"
+@inject LicenciasBLL licenciasBLL
 
 <EditForm Model="lista">
     <DataAnnotationsValidator />
     <div class="card-header">
-        <h3>Consulta de Empleados</h3>
+        <h3>Consulta de Licencias</h3>
     </div>
 
     <div class="input-group">
@@ -28,10 +28,9 @@
         <div class="col-2 mx-3">
             <div class="row">
                 <select class="form-select">
-                    <option value="0" disabled> Seleccione una opcion</option>
-                    @* <option value="1">Todo</option> *@
-                    <option value="1">EmpleadoId</option>
-                    <option value="2">Nombre</option>
+                    <option value="0"> Seleccione una opcion</option>
+                    <option value="1">LicenciaId</option>
+                    <option value="2">EmpleadoId</option>
                 </select>
             </div>
         </div>
@@ -52,41 +51,37 @@
 
         <thead>
             <tr>
+                <th>LicenciaId</th>
                 <th>EmpleadoId</th>
-                <th>Nombre</th>
-                <th>Cedula</th>
-                <th>Estado civil</th>
-                <th>Direccion</th>
-                <th>Email</th>
-                <th>Celular</th>
-                <th>Telefono</th>
-                <th>Departamento</th>
-                <th>Cargo</th>
-                <th>Forma de pago</th>
-                <th>Fecha de ingreso</th>
+                <th>Fecha de emision</th>
+                <th>Fecha de inicio</th>
+                <th>Dias de reposo</th>
+                <th>Tipo de licencia</th>
+                <th>Caracteristicas</th>
+                <th>Nombre del medico</th>
+                <th>Lugar de emision</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var empleado in lista)
+            @foreach (var licencia in lista)
             {
                 <tr>
-                    <td>@empleado.EmpleadoId</td>
-                    <td>@empleado.Nombre</td>
-                    <td>@empleado.Cedula</td>
-                    <td>@empleado.EstadoCivil</td>
-                    <td>@empleado.Direccion</td>
-                    <td>@empleado.Email</td>
-                    <td>@empleado.Celular</td>
-                    <td>@empleado.Telefono</td>
-                    <td>@empleado.Departamento</td>
-                    <td>@empleado.Cargo</td>
-                    <td>@empleado.FormaPago</td>
-                    <td>@empleado.FechaIngreso</td>
-                    <td><a href="empleados/@empleado.EmpleadoId">Ver</a></td>
+                    <th>@licencia.LicenciaId</th>
+                    <th>@licencia.EmpleadoId</th>
+                    <th>@licencia.FechaEmision</th>
+                    <th>@licencia.FechaInicio</th>
+                    <th>@licencia.DiasReposo</th>
+                    <th>@licencia.TipoLicencia</th>
+                    <th>@licencia.Caracteristica</th>
+                    <th>@licencia.NombreMedico</th>
+                    <th>@licencia.LugarEmision</th>
+                    <td><a href="licencias/@licencia.LicenciaId">Ver</a></td>
                 </tr>
+                total++;
             }
 
         </tbody>
+        <h6>Total licencias @total</h6>
     </table>
 </EditForm>
 
@@ -99,35 +94,36 @@
     public DateTime FechaDesde { get; set; }
 
     public DateTime FechaHasta { get; set; }
+     public int total = 0;
 
-    public Empleados empleado { get; set; } = new Empleados();
+    public Licencias licencia { get; set; } = new Licencias();
 
-    public List<Empleados> lista { get; set; } = new List<Empleados>();
+    public List<Licencias> lista { get; set; } = new List<Licencias>();
 
     public void Buscar()
     {
-        lista = empleadosBLL.GetList(e => true);
+        lista = licenciasBLL.GetList(e => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    lista = empleadosBLL.GetList(e => true);
+                    lista = licenciasBLL.GetList(e => true);
                     break;
                 case "1":
-                    lista = empleadosBLL.GetList(e => e.EmpleadoId.ToString() == (Criterio));
+                    lista = licenciasBLL.GetList(e => e.LicenciaId.ToString() == (Criterio));
                     break;
                 case "3":
-                    lista = empleadosBLL.GetList(e => e.EmpleadoId.ToString() == (Criterio));
+                    lista = licenciasBLL.GetList(e => e.EmpleadoId.ToString() == (Criterio));
                     break;
             }
         }
         else
         {
-            lista = empleadosBLL.GetList(x => (x.FechaIngreso >= FechaDesde) && (x.FechaIngreso <= FechaHasta));
+            lista = licenciasBLL.GetList(x => (x.FechaInicio >= FechaDesde) && (x.FechaInicio <= FechaHasta));
 
             if (Criterio == null)
-                lista = empleadosBLL.GetList(o => true);
+                lista = licenciasBLL.GetList(o => true);
         }
 
     }
