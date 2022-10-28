@@ -2,6 +2,7 @@
 @page "/nomina/{NominaId:int}"
 
 @inject NominaBLL NominaBLL
+@inject EmpleadosBLL empleadosBLL
 @inject NotificationService notificationService
 
 <EditForm Model="nomina" OnValidSubmit="Guardar">
@@ -38,27 +39,32 @@
             </div>
 
             @*Forma Pago*@
-           <div class="mb-3">
-                        <label>Forma de pago</label>
-                        <InputSelect class="form-select" @bind-Value="nomina.Forma_Pago">
-                            <option value="0" disabled> Seleccione uno </option>
-                            <option value= "1">Quincenal</option> 
-                                        <option value= "2">Mensual</option> 
-                        </InputSelect>
-                        <InputText @bind-Value="nomina.Forma_Pago" class="form-control" />
-                        <ValidationMessage For="@(() => nomina.Forma_Pago)" />
-                    </div>
+            <div class="mb-3">
+                <label>Forma de pago</label>
+                <InputSelect class="form-select" @bind-Value="nomina.Forma_Pago">
+                    <option value="0" disabled> Seleccione uno </option>
+                    <option value="1">Quincenal</option>
+                    <option value="2">Mensual</option>
+                </InputSelect>
+                <InputText @bind-Value="nomina.Forma_Pago" class="form-control" />
+                <ValidationMessage For="@(() => nomina.Forma_Pago)" />
+            </div>
 
             @*EmpleadoId*@
-            <label>Empleado ID</label>
-            <InputSelect class="form-select" @bind-Value="nomina.EmpleadoId">
-                <option value="0" disabled> Seleccione uno </option>
-                @foreach (Empleados empleado in listaEmpleadoId)
-                {
-                    <option value="@empleado.EmpleadoId">@empleado.Nombre (ID:
-                        @empleado.EmpleadoId)</option>
-                }
-            </InputSelect>
+            <div class="form-group">
+                <div class="mb-3">
+                    <label>Empleado ID</label>
+                    <InputSelect class="form-select" @bind-Value="nomina.EmpleadoId">
+                        <option value="0" disabled> Seleccione uno </option>
+                        @foreach (Empleados empleado in listaEmpleadoId)
+                        {
+                            <option value="@empleado.EmpleadoId">@empleado.Nombre (ID:
+                                @empleado.EmpleadoId)</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => nomina.EmpleadoId)" class="form-control" />
+                </div>
+            </div>
         </div>
         <h1>
             <span class="text-danger">@mensaje</span>
@@ -85,16 +91,20 @@
 
     [Parameter]
     public int NominaId { get; set; }
+    public int EmpleadoId { get; set; }
 
+    public int pago { get; set; }
     public Nomina nomina { get; set; } = new Nomina();
 
     public String mensaje { get; set; } = "";
+    public Empleados empleado { get; set; } = new Empleados();
 
     public List<Empleados> listaEmpleadoId { get; set; } = new List<Empleados>();
 
 
     protected override async Task OnInitializedAsync()
     {
+        listaEmpleadoId = empleadosBLL.GetList(p => true);
         if (NominaId > 0)
         {
             this.nomina.NominaId = NominaId;
@@ -162,4 +172,6 @@
         notificationService.Notify(message);
 
     }
+
+    
 }
