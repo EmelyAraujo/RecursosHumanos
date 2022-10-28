@@ -145,9 +145,9 @@ namespace RecursosHumanos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("pago")
+                    b.Property<int?>("pago")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("NominaId");
 

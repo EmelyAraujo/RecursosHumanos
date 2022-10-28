@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecursosHumanos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221028204745_Nomina")]
+    [Migration("20221028220111_Nomina")]
     partial class Nomina
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,9 +147,9 @@ namespace RecursosHumanos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("pago")
+                    b.Property<int?>("pago")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("NominaId");
 

@@ -75,7 +75,7 @@ namespace RecursosHumanos.Migrations
                 {
                     NominaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    pago = table.Column<string>(type: "TEXT", nullable: false),
+                    pago = table.Column<int>(type: "INTEGER", nullable: false),
                     Forma_Pago = table.Column<string>(type: "TEXT", nullable: false),
                     EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
