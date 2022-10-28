@@ -17,6 +17,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<LicenciasBLL>();
 builder.Services.AddScoped<EmpleadosBLL>();
 builder.Services.AddScoped<AusenciasBLL>();
+builder.Services.AddScoped<NominaBLL>();
 builder.Services.AddScoped<NotificationService>();
 
 

@@ -10,13 +10,37 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecursosHumanos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221013213903_Inicial")]
-    partial class Inicial
+    [Migration("20221028204745_Nomina")]
+    partial class Nomina
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
+
+            modelBuilder.Entity("Ausencias", b =>
+                {
+                    b.Property<int>("AusenciaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CantidadDias")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MotivoAusencia")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AusenciaId");
+
+                    b.ToTable("Ausencias");
+                });
 
             modelBuilder.Entity("Empleados", b =>
                 {
@@ -108,6 +132,52 @@ namespace RecursosHumanos.Migrations
                     b.HasKey("LicenciaId");
 
                     b.ToTable("Licencias");
+                });
+
+            modelBuilder.Entity("Nomina", b =>
+                {
+                    b.Property<int>("NominaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Forma_Pago")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("pago")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("NominaId");
+
+                    b.ToTable("Nomina");
+                });
+
+            modelBuilder.Entity("Permisos", b =>
+                {
+                    b.Property<int>("PermisoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CantidadDias")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MotivoPermiso")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("PermisoId");
+
+                    b.ToTable("Permisos");
                 });
 #pragma warning restore 612, 618
         }

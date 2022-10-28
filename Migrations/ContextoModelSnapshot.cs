@@ -132,6 +132,28 @@ namespace RecursosHumanos.Migrations
                     b.ToTable("Licencias");
                 });
 
+            modelBuilder.Entity("Nomina", b =>
+                {
+                    b.Property<int>("NominaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Forma_Pago")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("pago")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("NominaId");
+
+                    b.ToTable("Nomina");
+                });
+
             modelBuilder.Entity("Permisos", b =>
                 {
                     b.Property<int>("PermisoId")

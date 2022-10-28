@@ -6,7 +6,7 @@ public class Contexto : DbContext
     public DbSet<Licencias> Licencias { get; set; }
     public DbSet<Ausencias> Ausencias { get; set; }
     public DbSet<Permisos> Permisos { get; set; }
-
+    public DbSet<Nomina> Nomina { get; set; } 
     public Contexto(DbContextOptions<Contexto> options) : base(options)
     {
     }

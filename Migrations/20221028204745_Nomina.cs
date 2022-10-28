@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RecursosHumanos.Migrations
 {
-    public partial class AgregandoModeloPermisos : Migration
+    public partial class Nomina : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,6 +70,21 @@ namespace RecursosHumanos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Nomina",
+                columns: table => new
+                {
+                    NominaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    pago = table.Column<string>(type: "TEXT", nullable: false),
+                    Forma_Pago = table.Column<string>(type: "TEXT", nullable: false),
+                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nomina", x => x.NominaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Permisos",
                 columns: table => new
                 {
@@ -96,6 +111,9 @@ namespace RecursosHumanos.Migrations
 
             migrationBuilder.DropTable(
                 name: "Licencias");
+
+            migrationBuilder.DropTable(
+                name: "Nomina");
 
             migrationBuilder.DropTable(
                 name: "Permisos");
