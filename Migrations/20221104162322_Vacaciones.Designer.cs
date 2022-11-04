@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecursosHumanos.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20221028220111_Nomina")]
-    partial class Nomina
+    [Migration("20221104162322_Vacaciones")]
+    partial class Vacaciones
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,6 +178,29 @@ namespace RecursosHumanos.Migrations
                     b.HasKey("PermisoId");
 
                     b.ToTable("Permisos");
+                });
+
+            modelBuilder.Entity("Vacaciones", b =>
+                {
+                    b.Property<int>("VacacionesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DiasFinal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DiasInicio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Incentivo")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("VacacionesId");
+
+                    b.ToTable("Vacaciones");
                 });
 #pragma warning restore 612, 618
         }

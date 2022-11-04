@@ -18,6 +18,7 @@ builder.Services.AddScoped<LicenciasBLL>();
 builder.Services.AddScoped<EmpleadosBLL>();
 builder.Services.AddScoped<AusenciasBLL>();
 builder.Services.AddScoped<NominaBLL>();
+builder.Services.AddScoped<VacacionesBLL>();
 builder.Services.AddScoped<NotificationService>();
 
 
