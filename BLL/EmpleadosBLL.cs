@@ -35,27 +35,29 @@ public class EmpleadosBLL
 
     public bool Modificar(Empleados empleado)
     {
-         _contexto.Entry(empleado).State = EntityState.Modified;
-            return _contexto.SaveChanges()> 0;
+        _contexto.Entry(empleado).State = EntityState.Modified;
+        return _contexto.SaveChanges() > 0;
     }
-       public bool Eliminar(Empleados empleado)
+    public bool Eliminar(Empleados empleado)
     {
-         _contexto.Entry(empleado).State = EntityState.Deleted;
-            return _contexto.SaveChanges() > 0;
+        _contexto.Entry(empleado).State = EntityState.Deleted;
+        return _contexto.SaveChanges() > 0;
     }
 
-     public Empleados? Buscar(int empleadoId){
-            return _contexto.Empleados
-                    .Where(e=> e.EmpleadoId== empleadoId)
-                    .AsNoTracking()
-                    .SingleOrDefault();
-                    
-        }
-
-     public List<Empleados> GetList(Expression<Func<Empleados, bool>> Criterio){
-            return _contexto.Empleados
+    public Empleados? Buscar(int empleadoId)
+    {
+        return _contexto.Empleados
+                .Where(e => e.EmpleadoId == empleadoId)
                 .AsNoTracking()
-                .Where(Criterio)
-                .ToList();
-        }
+                .SingleOrDefault();
+
+    }
+
+    public List<Empleados> GetList(Expression<Func<Empleados, bool>> Criterio)
+    {
+        return _contexto.Empleados
+            .AsNoTracking()
+            .Where(Criterio)
+            .ToList();
+    }
 }
