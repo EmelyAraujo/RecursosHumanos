@@ -47,16 +47,16 @@ public class VacacionesBLL
     public Vacaciones? Buscar(int vacacionesId)
     {
         return _contexto.Vacaciones
-                .Where(e => e.VacacionesId == vacacionesId)
-                .AsNoTracking()
-                .SingleOrDefault();
+            .Where(e => e.VacacionesId == vacacionesId)
+            .AsTracking()
+            .SingleOrDefault();
 
     }
 
     public List<Vacaciones> GetList(Expression<Func<Vacaciones, bool>> Criterio)
     {
         return _contexto.Vacaciones
-            .AsNoTracking()
+            .AsTracking()
             .Where(Criterio)
             .ToList();
     }

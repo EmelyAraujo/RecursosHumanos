@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-public class LicenciasBLL{
+public class LicenciasBLL
+{
     private Contexto _contexto;
 
     public LicenciasBLL(Contexto contexto)
@@ -35,28 +36,30 @@ public class LicenciasBLL{
 
     public bool Modificar(Licencias licencia)
     {
-         _contexto.Entry(licencia).State = EntityState.Modified;
-            return _contexto.SaveChanges()> 0;
+        _contexto.Entry(licencia).State = EntityState.Modified;
+        return _contexto.SaveChanges() > 0;
     }
-       public bool Eliminar(Licencias licencia)
+    public bool Eliminar(Licencias licencia)
     {
-         _contexto.Entry(licencia).State = EntityState.Deleted;
-            return _contexto.SaveChanges() > 0;
+        _contexto.Entry(licencia).State = EntityState.Deleted;
+        return _contexto.SaveChanges() > 0;
     }
 
-     public Licencias? Buscar(int licenciaId){
-            return _contexto.Licencias
-                    .Where(l=> l.LicenciaId== licenciaId)
-                    .AsNoTracking()
-                    .SingleOrDefault();
-                    
-        }
+    public Licencias? Buscar(int licenciaId)
+    {
+        return _contexto.Licencias
+                .Where(l => l.LicenciaId == licenciaId)
+                .AsTracking()
+                .SingleOrDefault();
 
-     public List<Licencias> GetList(Expression<Func<Licencias, bool>> Criterio){
-            return _contexto.Licencias
-                .AsNoTracking()
-                .Where(Criterio)
-                .ToList();
-        }
+    }
+
+    public List<Licencias> GetList(Expression<Func<Licencias, bool>> Criterio)
+    {
+        return _contexto.Licencias
+            .AsTracking()
+            .Where(Criterio)
+            .ToList();
+    }
 
 }

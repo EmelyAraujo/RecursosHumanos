@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-public class AusenciasBLL{
+public class AusenciasBLL
+{
     private Contexto _contexto;
 
     public AusenciasBLL(Contexto contexto)
@@ -35,28 +36,30 @@ public class AusenciasBLL{
 
     public bool Modificar(Ausencias ausencia)
     {
-         _contexto.Entry(ausencia).State = EntityState.Modified;
-            return _contexto.SaveChanges()> 0;
+        _contexto.Entry(ausencia).State = EntityState.Modified;
+        return _contexto.SaveChanges() > 0;
     }
-       public bool Eliminar(Ausencias ausencia)
+    public bool Eliminar(Ausencias ausencia)
     {
-         _contexto.Entry(ausencia).State = EntityState.Deleted;
-            return _contexto.SaveChanges() > 0;
+        _contexto.Entry(ausencia).State = EntityState.Deleted;
+        return _contexto.SaveChanges() > 0;
     }
 
-     public Ausencias? Buscar(int ausenciaId){
-            return _contexto.Ausencias
-                    .Where(a=> a.AusenciaId== ausenciaId)
-                    .AsNoTracking()
-                    .SingleOrDefault();
-                    
-        }
+    public Ausencias? Buscar(int ausenciaId)
+    {
+        return _contexto.Ausencias
+                .Where(a => a.AusenciaId == ausenciaId)
+                .AsTracking()
+                .SingleOrDefault();
 
-     public List<Ausencias> GetList(Expression<Func<Ausencias, bool>> Criterio){
-            return _contexto.Ausencias
-                .AsNoTracking()
-                .Where(Criterio)
-                .ToList();
-        }
+    }
+
+    public List<Ausencias> GetList(Expression<Func<Ausencias, bool>> Criterio)
+    {
+        return _contexto.Ausencias
+            .AsTracking()
+            .Where(Criterio)
+            .ToList();
+    }
 
 }

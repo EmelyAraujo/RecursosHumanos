@@ -48,7 +48,7 @@ public class EmpleadosBLL
     {
         return _contexto.Empleados
                 .Where(e => e.EmpleadoId == empleadoId)
-                .AsNoTracking()
+                .AsTracking()
                 .SingleOrDefault();
 
     }
@@ -56,7 +56,7 @@ public class EmpleadosBLL
     public List<Empleados> GetList(Expression<Func<Empleados, bool>> Criterio)
     {
         return _contexto.Empleados
-            .AsNoTracking()
+            .AsTracking()
             .Where(Criterio)
             .ToList();
     }

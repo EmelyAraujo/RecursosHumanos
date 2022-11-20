@@ -55,7 +55,7 @@ public class NominaBLL
     {
         var nomina = await _contexto.Nomina
                 .Where(o => o.NominaId == nominaId)
-                .AsNoTracking()
+                .AsTracking()
                 .SingleOrDefaultAsync();
 
         return nomina;
@@ -65,7 +65,7 @@ public class NominaBLL
     {
         return await _contexto.Nomina
             .Where(Criterio)
-            .AsNoTracking()
+            .AsTracking()
             .ToListAsync();
     }
 }
